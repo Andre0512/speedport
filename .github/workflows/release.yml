@@ -12,14 +12,14 @@ jobs:
 
       - name: ZIP Component Dir
         run: |
-          cd ${{ github.workspace }}/custom_components/hon
+          cd ${{ github.workspace }}/custom_components/speedport
           zip -r speedport.zip ./
 
       - name: Upload zip to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ github.workspace }}/custom_components/hon/speedport.zip
+          file: ${{ github.workspace }}/custom_components/speedport/speedport.zip
           asset_name: speedport.zip
           tag: ${{ github.ref }}
           overwrite: true
