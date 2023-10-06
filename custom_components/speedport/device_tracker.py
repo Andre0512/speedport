@@ -10,9 +10,9 @@ from .const import DOMAIN
 
 
 async def async_setup_entry(
-        hass: HomeAssistant,
-        entry: ConfigEntry,
-        async_add_entities: AddEntitiesCallback,
+    hass: HomeAssistant,
+    entry: ConfigEntry,
+    async_add_entities: AddEntitiesCallback,
 ) -> None:
     coordinator = hass.data[DOMAIN][entry.entry_id]
     devices = [SpeedportTracker(device) for device in await coordinator.devices]
@@ -20,7 +20,6 @@ async def async_setup_entry(
 
 
 class SpeedportTracker(ScannerEntity):
-
     _attr_should_poll = False
 
     def __init__(self, device: WlanDevice) -> None:
@@ -84,4 +83,3 @@ class SpeedportTracker(ScannerEntity):
     def name(self) -> str:
         """Return device name."""
         return self._device.name
-

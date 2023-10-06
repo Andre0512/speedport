@@ -23,11 +23,9 @@ async def async_setup_entry(
 
 
 class SpeedportWifiSwitch(SwitchEntity):
-
     _attr_is_on: bool | None = False
 
     def __init__(self, speedport) -> None:
-
         self._description = "Wi-Fi"
         self._friendly_name = "Wi-Fi"
         self._icon = "mdi:wifi"

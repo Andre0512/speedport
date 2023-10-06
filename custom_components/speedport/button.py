@@ -15,14 +15,15 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     coordinator = hass.data[DOMAIN][entry.entry_id]
-    async_add_entities([
-        SpeedportReconnectButton(coordinator),
-        SpeedportRebootButton(coordinator),
-    ])
+    async_add_entities(
+        [
+            SpeedportReconnectButton(coordinator),
+            SpeedportRebootButton(coordinator),
+        ]
+    )
 
 
 class SpeedportReconnectButton(ButtonEntity):
-
     _attr_device_class = ButtonDeviceClass.RESTART
     _attr_entity_category = EntityCategory.CONFIG
     _attr_name = "Reconnect"
