@@ -1,0 +1,12 @@
+{
+  "codeowners": ["@Andre0512"],
+  "config_flow": true,
+  "requirements": ["speedport-api~=0.4"],
+  "dependencies": ["network"],
+  "domain": "speedport",
+  "name": "Speedport",
+  "version": "0.1.0",
+  "iot_class": "local_polling",
+  "documentation": "https://github.com/Andre0512/speedport/",
+  "issue_tracker": "https://github.com/Andre0512/speedport/issues"
+}
