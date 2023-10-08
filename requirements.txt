@@ -1,2 +1,2 @@
-speedport-api==0.4.7
+speedport-api==0.4.8
 homeassistant~=2023.10

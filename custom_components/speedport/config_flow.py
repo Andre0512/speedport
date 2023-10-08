@@ -20,7 +20,7 @@ _LOGGER = logging.getLogger(__name__)
 STEP_USER_DATA_SCHEMA = vol.Schema(
     {
         vol.Required("host", default="speedport.ip"): str,
-        vol.Required("password", default="route89251984"): str,
+        vol.Required("password"): str,
     }
 )
 

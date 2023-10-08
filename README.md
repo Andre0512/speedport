@@ -4,7 +4,7 @@
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Andre0512/speedport?color=green)](https://github.com/Andre0512/speedport/releases/latest)
 [![GitHub all releases](https://img.shields.io/github/downloads/Andre0512/speedport/total?color=blue&label=total%20downloads)](https://tooomm.github.io/github-release-stats/?username=Andre0512&repository=speedport)
 
-Telekom Speedport Integration for Home Assistant based on [speedport-api](https://github.com/Andre0512/speedport.git)
+Telekom Speedport Integration for Home Assistant based on [speedport-api](https://github.com/Andre0512/speedport-api.git)
 
 | ⚠️ **Work in progress...** ⚠️ |
 |------------------------------|
