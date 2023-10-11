@@ -5,6 +5,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from speedport import Speedport
 
 from .const import DOMAIN
 
@@ -19,6 +20,7 @@ async def async_setup_entry(
         [
             SpeedportReconnectButton(coordinator),
             SpeedportRebootButton(coordinator),
+            SpeedportWPSButton(coordinator),
         ]
     )
 
@@ -51,3 +53,18 @@ class SpeedportRebootButton(ButtonEntity):
     async def async_press(self) -> None:
         """Send out a restart command."""
         await self.coordinator.reboot()
+
+
+class SpeedportWPSButton(ButtonEntity):
+    _attr_device_class = ButtonDeviceClass.IDENTIFY
+    _attr_entity_category = EntityCategory.CONFIG
+    _attr_name = "WPS on"
+
+    def __init__(self, coordinator) -> None:
+        """Initialize the button entity."""
+        self.coordinator: Speedport = coordinator
+        self._attr_unique_id = "speedport_wps"
+
+    async def async_press(self) -> None:
+        """Send out a restart command."""
+        await self.coordinator.wps_on()

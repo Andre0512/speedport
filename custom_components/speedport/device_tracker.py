@@ -51,6 +51,8 @@ class SpeedportTracker(CoordinatorEntity, ScannerEntity):
         super().__init__(coordinator)
         self._mac = mac
         self._device: WlanDevice = self.coordinator.data.get(mac)
+        self._attr_entity_registry_enabled_default = True
+        self._attr_entity_registry_visible_default = True
 
     @property
     def source_type(self) -> SourceType:
