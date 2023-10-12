@@ -20,6 +20,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         host=entry.data["host"], password=entry.data["password"], session=session
     ).create()
     hass.data[DOMAIN][entry.entry_id] = speedport
+    hass.data[DOMAIN]["coordinators"] = {}
 
     for platform in PLATFORMS:
         hass.async_create_task(

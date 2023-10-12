@@ -9,8 +9,9 @@ Telekom Speedport Integration for Home Assistant based on [speedport-api](https:
 | ⚠️ **Work in progress...** ⚠️ |
 |------------------------------|
 
-Currently, this integration can be used to track devices in network.
-
+- Track presence of connected devices
+- Turn on/off wifi (guest/office/normal)
+- Reconnect, reboot, wps on
 
 ## Installation
 #### Installing via HACS

@@ -5,9 +5,11 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.typing import HomeAssistantType
 from speedport import Speedport
 
 from .const import DOMAIN
+from .device import SpeedportEntity
 
 
 async def async_setup_entry(
@@ -18,53 +20,56 @@ async def async_setup_entry(
     coordinator = hass.data[DOMAIN][entry.entry_id]
     async_add_entities(
         [
-            SpeedportReconnectButton(coordinator),
-            SpeedportRebootButton(coordinator),
-            SpeedportWPSButton(coordinator),
+            SpeedportReconnectButton(hass, coordinator),
+            SpeedportRebootButton(hass, coordinator),
+            SpeedportWPSButton(hass, coordinator),
         ]
     )
 
 
-class SpeedportReconnectButton(ButtonEntity):
+class SpeedportReconnectButton(ButtonEntity, SpeedportEntity):
     _attr_device_class = ButtonDeviceClass.RESTART
     _attr_entity_category = EntityCategory.CONFIG
-    _attr_name = "Reconnect"
 
-    def __init__(self, coordinator) -> None:
+    def __init__(self, hass: HomeAssistantType, speedport: Speedport) -> None:
         """Initialize the button entity."""
-        self.coordinator = coordinator
+        super().__init__(hass, speedport)
+        self._attr_name = "Reconnect"
+        self._speedport = speedport
         self._attr_unique_id = "speedport_reconnect"
 
     async def async_press(self) -> None:
         """Send out a restart command."""
-        await self.coordinator.reconnect()
+        await self._speedport.reconnect()
 
 
-class SpeedportRebootButton(ButtonEntity):
+class SpeedportRebootButton(ButtonEntity, SpeedportEntity):
     _attr_device_class = ButtonDeviceClass.RESTART
     _attr_entity_category = EntityCategory.CONFIG
-    _attr_name = "Reboot"
 
-    def __init__(self, coordinator) -> None:
+    def __init__(self, hass: HomeAssistantType, speedport: Speedport) -> None:
         """Initialize the button entity."""
-        self.coordinator = coordinator
+        super().__init__(hass, speedport)
+        self._attr_name = "Reboot"
+        self._speedport = speedport
         self._attr_unique_id = "speedport_reboot"
 
     async def async_press(self) -> None:
         """Send out a restart command."""
-        await self.coordinator.reboot()
+        await self._speedport.reboot()
 
 
-class SpeedportWPSButton(ButtonEntity):
+class SpeedportWPSButton(ButtonEntity, SpeedportEntity):
     _attr_device_class = ButtonDeviceClass.IDENTIFY
     _attr_entity_category = EntityCategory.CONFIG
-    _attr_name = "WPS on"
 
-    def __init__(self, coordinator) -> None:
+    def __init__(self, hass: HomeAssistantType, speedport: Speedport) -> None:
         """Initialize the button entity."""
-        self.coordinator: Speedport = coordinator
+        super().__init__(hass, speedport)
+        self._attr_name = "WPS on"
+        self._speedport: Speedport = speedport
         self._attr_unique_id = "speedport_wps"
 
     async def async_press(self) -> None:
         """Send out a restart command."""
-        await self.coordinator.wps_on()
+        await self._speedport.wps_on()
