@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import logging
 from typing import Any
 
@@ -22,7 +23,7 @@ async def async_setup_entry(
     """Set up entry."""
 
     speedport: Speedport = hass.data[DOMAIN][entry.entry_id]
-    await speedport.update_status()
+    await asyncio.gather(*[speedport.update_status(), speedport.update_ip_data()])
     async_add_entities(
         [
             SpeedportWifiSwitch(hass, speedport),

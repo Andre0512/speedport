@@ -8,7 +8,13 @@ from speedport import Speedport
 
 from .const import DOMAIN
 
-PLATFORMS: list[Platform] = [Platform.BUTTON, Platform.DEVICE_TRACKER, Platform.SWITCH]
+PLATFORMS: list[Platform] = [
+    Platform.BUTTON,
+    Platform.DEVICE_TRACKER,
+    Platform.SWITCH,
+    Platform.BINARY_SENSOR,
+    Platform.SENSOR,
+]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:

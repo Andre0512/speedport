@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from datetime import timedelta
 
@@ -25,21 +26,28 @@ class SpeedportCoordinator(DataUpdateCoordinator[None]):
             name=device.device_name,
             update_interval=timedelta(seconds=UPDATE_INTERVAL),
         )
-        self._device = device
+        self._speedport: Speedport = device
 
     async def _async_update_data(self) -> None:
-        return await self._device.update_status()
+        await asyncio.gather(
+            *[self._speedport.update_status(), self._speedport.update_ip_data()]
+        )
 
 
 class SpeedportEntity(CoordinatorEntity[SpeedportCoordinator]):
     _attr_has_entity_name = True
 
-    def __init__(self, hass: HomeAssistantType, speedport: Speedport) -> None:
+    def __init__(
+        self, hass: HomeAssistantType, speedport: Speedport, description=None
+    ) -> None:
         coordinator = get_coordinator(hass, speedport)
         super().__init__(coordinator)
 
         self._coordinator = coordinator
         self._speedport: Speedport = speedport
+        if description is not None:
+            self.entity_description = description
+            self._attr_unique_id = f"speedport_{description.key}"
 
     @property
     def device_info(self) -> DeviceInfo:

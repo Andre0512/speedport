@@ -12,6 +12,7 @@ Telekom Speedport Integration for Home Assistant based on [speedport-api](https:
 - Track presence of connected devices
 - Turn on/off wifi (guest/office/normal)
 - Reconnect, reboot, wps on
+- Sensors (IP-Addresses, Upload/Download, Connection, ...)
 
 ## Installation
 #### Installing via HACS
@@ -30,3 +31,10 @@ Telekom Speedport Integration for Home Assistant based on [speedport-api](https:
 * Speedport Smart 4
 
 So far I can only confirm that it works with my router 🙂
+
+## Support
+If you find this project helpful and would like to support its development, you can buy me a coffee! ☕
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/andre0512)
+
+Don't forget to star the repository if you found it useful! ⭐
