@@ -17,5 +17,16 @@
                 }
             }
         }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "pause_time": "Pause for minutes"
+                },
+                "title": "Settings",
+                "description": "Time to stop updating sensors that require authorization when the user logs in to the web interface. (User gets logged out after this time)"
+            }
+        }
     }
 }
