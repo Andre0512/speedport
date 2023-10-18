@@ -115,3 +115,7 @@ class SpeedportTracker(CoordinatorEntity, ScannerEntity):
         """Handle updated data from the coordinator."""
         self._device = self.coordinator.data.get(self._mac)
         self.async_write_ha_state()
+
+    @property
+    def available(self) -> bool:
+        return super().available and self._device is not None
