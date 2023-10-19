@@ -9,8 +9,8 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
-    EntityCategory,
     UnitOfDataRate,
+    SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
 )
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -66,6 +66,34 @@ SENSORS: tuple[SensorEntityDescription, ...] = (
         device_class=SensorDeviceClass.DATA_RATE,
         icon="mdi:download",
     ),
+    SensorEntityDescription(
+        key="router_state",
+        name="Router State",
+        icon="mdi:router-wireless",
+    ),
+    SensorEntityDescription(
+        key="dsl_pop",
+        name="DSL-PoP",
+        icon="mdi:map-marker-radius",
+    ),
+    SensorEntityDescription(
+        key="ex5g_signal_5g",
+        name="5G Signal",
+        native_unit_of_measurement=SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
+        icon="mdi:signal",
+    ),
+    SensorEntityDescription(
+        key="ex5g_freq_5g", name="5G Frequency", icon="mdi:signal-5g"
+    ),
+    SensorEntityDescription(
+        key="ex5g_signal_lte",
+        name="LTE Signal",
+        native_unit_of_measurement=SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
+        icon="mdi:signal",
+    ),
+    SensorEntityDescription(
+        key="ex5g_freq_lte", name="LTE Frequency", icon="mdi:signal-4g"
+    ),
 )
 
 
@@ -76,7 +104,9 @@ async def async_setup_entry(
     speedport: Speedport = hass.data[DOMAIN][entry.entry_id]
 
     entities = [
-        SpeedportBinarySensor(hass, speedport, description) for description in SENSORS
+        SpeedportBinarySensor(hass, speedport, description)
+        for description in SENSORS
+        if speedport.get(description.key) is not None
     ]
 
     async_add_entities(entities)
@@ -91,7 +121,7 @@ class SpeedportBinarySensor(SpeedportEntity, SensorEntity):
         if (data := self._speedport.get(self.entity_description.key)) is None:
             return None
         if self.entity_description.device_class == SensorDeviceClass.TIMESTAMP:
-            date = datetime.strptime(data, "%Y-%m-%d %H:%M:%S")
+            date = datetime.strptime(data, "%Y-%m-%d %H:%M:%S").replace(second=0)
             return pytz.timezone("Europe/Berlin").localize(date)
         return data
 
