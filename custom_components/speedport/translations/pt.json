@@ -1,0 +1,33 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Equipamento já configurado"
+            },
+            "error": {
+              "cannot_connect": "Falha na ligação",
+              "invalid_auth": "Falha na autenticação",
+              "unknown": "Erro desconhecido"
+    },
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Host",
+                    "password": "Senha",
+                    "https": "Use uma ligação https"
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "pause_time": "Pausa em minutos"
+                },
+                "title": "Configurações",
+                "description": "Tempo para os sesores pararem precisa de autozição aos logs de utilizaor na interface web. (O utilizador é logado após este tempo)"
+            }
+        }
+    }
+}
