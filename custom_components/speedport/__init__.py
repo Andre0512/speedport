@@ -1,4 +1,5 @@
 """The Speedport integration."""
+
 import asyncio
 
 from homeassistant.config_entries import ConfigEntry
