@@ -15,5 +15,5 @@
     "speedport-api==0.5.8",
     "pytz>=2023.3"
   ],
-  "version": "0.3.3"
+  "version": "0.3.4"
 }
