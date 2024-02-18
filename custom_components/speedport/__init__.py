@@ -26,6 +26,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     speedport = await Speedport(
         host=entry.data["host"],
         password=entry.data["password"],
+        https=entry.data["https"],
         session=aiohttp_client.async_get_clientsession(hass),
         pause_time=entry.options.get("pause_time", 5),
     ).create()
