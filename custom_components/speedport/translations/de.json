@@ -1,0 +1,32 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Gerät ist bereits konfiguriert"
+        },
+        "error": {
+            "cannot_connect": "Verbindungsfehler",
+            "invalid_auth": "Ungültige Authentifizierung",
+            "unknown": "Unbekannter Fehler"
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Host",
+                    "password": "Passwort",
+                    "https": "Nutze https Verbindung"
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "pause_time": "Pause in Minuten"
+                },
+                "title": "Einstellungen",
+                "description": "Zeit in der das Updaten der Sensoren pausiert wird wenn sich ein Nutzer im Speedport Web-UI einloggt (Nutzer wird nach dieser Zeit ausgeloggt)"
+            }
+        }
+    }
+}
