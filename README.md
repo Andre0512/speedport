@@ -1,9 +1,12 @@
 # Speedport Integration for Home Assistant
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz)
+[![hacs_badge](https://img.shields.io/badge/hacs-Default-41BDF5.svg)](https://hacs.xyz)
 [![GitHub](https://img.shields.io/github/license/Andre0512/speedport?color=red)](https://github.com/Andre0512/speedport/blob/main/LICENSE)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Andre0512/speedport/python_check.yml?branch=main&label=checks)](https://github.com/Andre0512/speedport/actions/workflows/python_check.yml)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-donate-orange.svg)](https://www.buymeacoffee.com/andre0512)  
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Andre0512/speedport?color=green)](https://github.com/Andre0512/speedport/releases/latest)
-[![GitHub all releases](https://img.shields.io/github/downloads/Andre0512/speedport/total?color=blue&label=total%20downloads)](https://tooomm.github.io/github-release-stats/?username=Andre0512&repository=speedport)
+[![GitHub all releases](https://img.shields.io/github/downloads/Andre0512/speedport/latest/total?color=blue&label=downloads)](https://tooomm.github.io/github-release-stats/?username=Andre0512&repository=speedport)
+[![GitHub all releases](https://img.shields.io/github/downloads/Andre0512/speedport/total?color=blue&label=total%20downloads)](https://tooomm.github.io/github-release-stats/?username=Andre0512&repository=speedport)  
 
 Telekom Speedport Integration for Home Assistant based
 on [speedport-api](https://github.com/Andre0512/speedport-api.git).
@@ -21,16 +24,13 @@ on [speedport-api](https://github.com/Andre0512/speedport-api.git).
 * Speedport Smart 4
 
 ## Installation
+**Method 1:** [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Andre0512&repository=speedport&category=integration)
 
-_Currently [waiting for acceptance](https://github.com/hacs/default/pull/2096) to hacs default repo..._
+**Method 2:** [HACS](https://hacs.xyz/) > Integrations > Add Integration > **Speedport** > Install  
 
-#### Installing via HACS (Custom)
+**Method 3:** Manually copy `speedport` folder from [latest release](https://github.com/Andre0512/speedport/releases/latest) to `config/custom_components` folder.
 
-1. You need to have installed [HACS](https://hacs.xyz/)
-2. Go to HACS -> Integrations
-3. Add this repo (`https://github.com/Andre0512/speedport.git`) into your HACS custom repositories
-4. Search for Speedport and download it
-5. Restart your Home Assistant
+_Restart Home Assistant_
 
 ## Configuration
 
