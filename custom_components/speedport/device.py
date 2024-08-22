@@ -3,8 +3,8 @@ import logging
 from datetime import timedelta
 
 from homeassistant.core import callback
+from homeassistant.core import HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo
-from homeassistant.helpers.typing import HomeAssistantType
 from homeassistant.helpers.update_coordinator import (
     DataUpdateCoordinator,
     CoordinatorEntity,
@@ -17,7 +17,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class SpeedportCoordinator(DataUpdateCoordinator[None]):
-    def __init__(self, hass: HomeAssistantType, device: Speedport):
+    def __init__(self, hass: HomeAssistant, device: Speedport):
         """Initialize my coordinator."""
 
         super().__init__(
@@ -38,7 +38,7 @@ class SpeedportEntity(CoordinatorEntity[SpeedportCoordinator]):
     _attr_has_entity_name = True
 
     def __init__(
-        self, hass: HomeAssistantType, speedport: Speedport, description=None
+        self, hass: HomeAssistant, speedport: Speedport, description=None
     ) -> None:
         coordinator = get_coordinator(hass, speedport)
         super().__init__(coordinator)
@@ -65,9 +65,7 @@ class SpeedportEntity(CoordinatorEntity[SpeedportCoordinator]):
         self.async_write_ha_state()
 
 
-def get_coordinator(
-    hass: HomeAssistantType, speedport: Speedport
-) -> SpeedportCoordinator:
+def get_coordinator(hass: HomeAssistant, speedport: Speedport) -> SpeedportCoordinator:
     coordinators = hass.data[DOMAIN]["coordinators"]
     if speedport.serial_number in coordinators:
         coordinator: SpeedportCoordinator = hass.data[DOMAIN]["coordinators"][
