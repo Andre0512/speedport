@@ -1,6 +1,7 @@
 from datetime import datetime
 
-import pytz
+# fix from https://github.com/Andre0512/speedport/pull/34/files
+from zoneinfo import ZoneInfo
 from homeassistant.components.sensor import (
     SensorEntityDescription,
     SensorDeviceClass,
@@ -122,7 +123,8 @@ class SpeedportBinarySensor(SpeedportEntity, SensorEntity):
             return None
         if self.entity_description.device_class == SensorDeviceClass.TIMESTAMP:
             date = datetime.strptime(data, "%Y-%m-%d %H:%M:%S").replace(second=0)
-            return pytz.timezone("Europe/Berlin").localize(date)
+            # fix from https://github.com/Andre0512/speedport/pull/34/files
+            return date.replace(tzinfo=ZoneInfo("Europe/Berlin"))
         return data
 
     def available(self) -> bool:
