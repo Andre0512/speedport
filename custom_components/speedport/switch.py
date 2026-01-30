@@ -7,7 +7,7 @@ from homeassistant.components.switch import SwitchEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers.typing import HomeAssistantType
+# HomeAssistantType entfernt
 from speedport import Speedport
 
 from .const import DOMAIN
@@ -34,7 +34,7 @@ async def async_setup_entry(
 class SpeedportWifiSwitch(SwitchEntity, SpeedportEntity):
     _attr_is_on: bool | None = False
 
-    def __init__(self, hass: HomeAssistantType, speedport: Speedport) -> None:
+    def __init__(self, hass: HomeAssistant, speedport: Speedport) -> None:
         super().__init__(hass, speedport)
         self._speedport: Speedport = speedport
         self._attr_icon = "mdi:wifi"
@@ -57,7 +57,7 @@ class SpeedportWifiSwitch(SwitchEntity, SpeedportEntity):
 class SpeedportGuestWifiSwitch(SwitchEntity, SpeedportEntity):
     _attr_is_on: bool | None = False
 
-    def __init__(self, hass: HomeAssistantType, speedport: Speedport) -> None:
+    def __init__(self, hass: HomeAssistant, speedport: Speedport) -> None:
         super().__init__(hass, speedport)
         self._speedport: Speedport = speedport
         self._attr_icon = "mdi:wifi"
@@ -80,7 +80,7 @@ class SpeedportGuestWifiSwitch(SwitchEntity, SpeedportEntity):
 class SpeedportOfficeWifiSwitch(SwitchEntity, SpeedportEntity):
     _attr_is_on: bool | None = False
 
-    def __init__(self, hass: HomeAssistantType, speedport: Speedport) -> None:
+    def __init__(self, hass: HomeAssistant, speedport: Speedport) -> None:
         super().__init__(hass, speedport)
         self._speedport: Speedport = speedport
         self._attr_icon = "mdi:wifi"
@@ -89,7 +89,7 @@ class SpeedportOfficeWifiSwitch(SwitchEntity, SpeedportEntity):
 
     @property
     def is_on(self) -> bool | None:
-        return self._speedport.wlan_office_ssid
+        return self._speedport.wlan_office_active # Kleiner Fix: hier sollte vermutlich der Status stehen, nicht die SSID
 
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn on switch."""

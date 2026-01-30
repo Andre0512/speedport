@@ -4,7 +4,7 @@ from homeassistant.components.button import ButtonDeviceClass, ButtonEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers.typing import HomeAssistantType
+# Die Zeile mit HomeAssistantType wurde entfernt
 from speedport import Speedport
 
 from .const import DOMAIN
@@ -29,7 +29,7 @@ async def async_setup_entry(
 class SpeedportReconnectButton(ButtonEntity, SpeedportEntity):
     _attr_device_class = ButtonDeviceClass.RESTART
 
-    def __init__(self, hass: HomeAssistantType, speedport: Speedport) -> None:
+    def __init__(self, hass: HomeAssistant, speedport: Speedport) -> None:
         """Initialize the button entity."""
         super().__init__(hass, speedport)
         self._attr_name = "Reconnect"
@@ -44,7 +44,7 @@ class SpeedportReconnectButton(ButtonEntity, SpeedportEntity):
 class SpeedportRebootButton(ButtonEntity, SpeedportEntity):
     _attr_device_class = ButtonDeviceClass.RESTART
 
-    def __init__(self, hass: HomeAssistantType, speedport: Speedport) -> None:
+    def __init__(self, hass: HomeAssistant, speedport: Speedport) -> None:
         """Initialize the button entity."""
         super().__init__(hass, speedport)
         self._attr_name = "Reboot"
@@ -59,7 +59,7 @@ class SpeedportRebootButton(ButtonEntity, SpeedportEntity):
 class SpeedportWPSButton(ButtonEntity, SpeedportEntity):
     _attr_device_class = ButtonDeviceClass.IDENTIFY
 
-    def __init__(self, hass: HomeAssistantType, speedport: Speedport) -> None:
+    def __init__(self, hass: HomeAssistant, speedport: Speedport) -> None:
         """Initialize the button entity."""
         super().__init__(hass, speedport)
         self._attr_name = "WPS on"
